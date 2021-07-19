@@ -77,7 +77,7 @@ class SimpleImage {
       withBackground: data.withBackground !== undefined ? data.withBackground : false,
       stretched: data.stretched !== undefined ? data.stretched : false,
     };
- 
+
     /**
      * Available Image settings
      */
@@ -99,7 +99,7 @@ class SimpleImage {
 
   static get toolbox() {
     return {
-      title: 'Image',
+      title: 'Imagen',
       icon: '<svg width="17" height="15" viewBox="0 0 336 276" xmlns="http://www.w3.org/2000/svg"><path d="M291 150V79c0-19-15-34-34-34H79c-19 0-34 15-34 34v42l67-44 81 72 56-29 42 30zm0 52l-43-30-56 30-81-67-66 39v23c0 19 15 34 34 34h178c17 0 31-13 34-29zM79 0h178c44 0 79 35 79 79v118c0 44-35 79-79 79H79c-44 0-79-35-79-79V79C0 35 35 0 79 0z"/></svg>'
     };
   }
@@ -132,7 +132,7 @@ class SimpleImage {
     this.nodes.loader = loader;
     this.nodes.loadButton = loadButton;
 
-    caption.dataset.placeholder = 'Enter a caption';
+    caption.dataset.placeholder = 'Título de la imagen';
 
     image.onload = () => {
       wrapper.classList.remove(this.CSS.loading);
@@ -157,22 +157,28 @@ class SimpleImage {
 
     if (this.data.url) {
       wrapper.appendChild(loader);
-      image.src = this.data.url;    }
+      image.src = this.data.url;
+    }
     else {
-      wrapper.appendChild(loadButton);
-
-      loadButton.onchange = (e) => {
-        const file = e.target.files[0];
-        const url = URL.createObjectURL(file);
-        
-        this.data = {
-          url: url,
-          caption: file.name
-        };
-      
-        loadButton.remove();
-        loadButton = null;
+      this.data = {
+        url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNgXQY-5xAeYwJSVE8z_c580CaFveQrsq4TQ&usqp=CAU',
+        caption: ''
       };
+
+      // wrapper.appendChild(loadButton);
+
+      // loadButton.onchange = (e) => {
+      //   const file = e.target.files[0];
+      //   const url = URL.createObjectURL(file);
+
+      //   this.data = {
+      //     url: url,
+      //     caption: file.name
+      //   };
+
+      //   loadButton.remove();
+      //   loadButton = null;
+      // };
     }
 
     return wrapper;
@@ -322,7 +328,7 @@ class SimpleImage {
       URL.revokeObjectURL(this.data.url);
     }
   }
-  
+
   /**
    * Helper for making Elements with attributes
    *
